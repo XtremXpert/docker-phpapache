@@ -37,5 +37,8 @@ ADD files/test.php /var/www/
 EXPOSE 80
 EXPOSE 443
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+ENTRYPOINT ["/usr/sbin/httpd"]
+CMD ["-DFOREGROUND"]
+
+#CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 #ENTRYPOINT [ "httpd -D FOREGROUND" ]
