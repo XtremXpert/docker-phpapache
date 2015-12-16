@@ -6,6 +6,8 @@ ENV MAX_UPLOAD "50M"
 
 RUN apk -U upgrade && \
 	apk --update add \
+		apache2 \
+		apache2-utils \
 		php-apache2 \
 		php-cli \
 		php-ctype \
