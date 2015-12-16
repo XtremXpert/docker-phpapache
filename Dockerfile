@@ -30,6 +30,8 @@ RUN apk -U upgrade && \
 	&& \
 	rm -rf /var/cache/apk/*
 
+ADD test.php /var/www/test.php
+
 EXPOSE 80
 EXPOSE 443
 
