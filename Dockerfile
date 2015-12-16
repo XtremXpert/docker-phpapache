@@ -2,8 +2,6 @@ FROM xtremxpert/docker-alpine:latest
 
 MAINTAINER Xtremxpert <xtremxpert@xtremxpert.com>
 
-ADD files/run.sh /run.sh
-
 RUN apk -U upgrade && \
 	apk --update add \
 		php-apache2 \
@@ -33,4 +31,4 @@ RUN apk -U upgrade && \
 
 EXPOSE 80
 
-ENTRYPOINT [ "/run.sh" ]
+ENTRYPOINT [ "httpd -D FOREGROUND" ]
