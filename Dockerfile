@@ -6,6 +6,7 @@ ADD files/run.sh /run.sh
 
 RUN apk -U upgrade && \
 	apk --update add \
+		php-apache2 \
 		php-cli \
 		php-ctype \
 		php-curl \
