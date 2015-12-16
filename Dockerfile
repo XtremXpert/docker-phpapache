@@ -24,15 +24,17 @@ RUN apk -U upgrade && \
 		php-zlib \
 	&& \
 	sed -i 's#AllowOverride none#AllowOverride All#' /etc/apache2/httpd.conf && \
+	sed -i 's#^DocumentRoot ".*#DocumentRoot "/var/www/htdocs"#g' /etc/apache2/httpd.conf && \
 	sed -i 's#output_buffering = 4096#output_buffering = Off#' /etc/php/php.ini && \
 	sed -i \
 		-e "s/^upload_max_filesize\s*=\s*2M/upload_max_filesize = $MAX_UPLOAD/" \
 		-e "s/^post_max_size\s*=\s*8M/post_max_size = $MAX_UPLOAD/" \
 		/etc/php/php.ini \
 	&& \
+	mv /var/www/localhost /var/www/ && \
 	rm -rf /var/cache/apk/*
 
-ADD files/test.php /var/www/
+ADD files/test.php /var/www/htdocs/
 
 EXPOSE 80
 EXPOSE 443
