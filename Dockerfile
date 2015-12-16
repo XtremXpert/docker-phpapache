@@ -2,6 +2,8 @@ FROM xtremxpert/docker-alpine:latest
 
 MAINTAINER Xtremxpert <xtremxpert@xtremxpert.com>
 
+ENV MAX_UPLOAD "50M"
+
 RUN apk -U upgrade && \
 	apk --update add \
 		php-apache2 \
@@ -22,12 +24,13 @@ RUN apk -U upgrade && \
 	sed -i 's#AllowOverride none#AllowOverride All#' /etc/apache2/httpd.conf && \
 	sed -i 's#output_buffering = 4096#output_buffering = Off#' /etc/php/php.ini && \
 	sed -i \
-		-e "s/^upload_max_filesize\s*=\s*2M/upload_max_filesize = 64M/" \
-		-e "s/^post_max_size\s*=\s*8M/post_max_size = 64M/" \
+		-e "s/^upload_max_filesize\s*=\s*2M/upload_max_filesize = $MAX_UPLOAD/" \
+		-e "s/^post_max_size\s*=\s*8M/post_max_size = $MAX_UPLOAD/" \
 		/etc/php/php.ini \
 	&& \
 	rm -rf /var/cache/apk/*
 
 EXPOSE 80
+EXPOSE 443
 
 ENTRYPOINT [ "httpd -D FOREGROUND" ]
