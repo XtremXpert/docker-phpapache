@@ -26,7 +26,6 @@ RUN apk -U upgrade && \
 		-e "s/^post_max_size\s*=\s*8M/post_max_size = 64M/" \
 		/etc/php/php.ini \
 	&& \
-	chmod u+x /*.sh && \
 	rm -rf /var/cache/apk/*
 
 EXPOSE 80
