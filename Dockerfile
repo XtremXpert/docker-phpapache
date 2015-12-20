@@ -18,7 +18,7 @@ RUN apt-get update && \
 		php5-memcache \
 		php5-pspell \
 		php5-recode \
-		php5-snmp \
+#		php5-snmp \
 		php5-sqlite \
 		php5-tidy \
 		php5-xmlrpc \
