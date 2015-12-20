@@ -4,8 +4,6 @@ MAINTAINER Xtremxpert <xtremxpert@xtremxpert.com>
 
 ENV MAX_UPLOAD "50M"
 
-COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 RUN apt-get update && \
 	apt-get install -y \
 		apache2 \
@@ -29,15 +27,16 @@ RUN apt-get update && \
 	&& \
 	rm -r /var/lib/apt/lists/*
 
-RUN sed -i 's#AllowOverride none#AllowOverride All#' /etc/apache2/httpd.conf && \
-	sed -i 's#^DocumentRoot ".*#DocumentRoot "/var/www/htdocs"#g' /etc/apache2/httpd.conf && \
-	sed -i 's#output_buffering = 4096#output_buffering = Off#' /etc/php/php.ini && \
+RUN sed -i 's#AllowOverride none#AllowOverride All#' /etc/apache2/apache2.conf && \
+	sed -i 's#^DocumentRoot ".*#DocumentRoot "/var/www/htdocs"#g' /etc/apache2/apache2.conf && \
+	sed -i 's#output_buffering = 4096#output_buffering = Off#' /etc/php5/apache2/php.ini && \
 	sed -i \
 		-e "s/^upload_max_filesize\s*=\s*2M/upload_max_filesize = $MAX_UPLOAD/" \
 		-e "s/^post_max_size\s*=\s*8M/post_max_size = $MAX_UPLOAD/" \
-		/etc/php/php.ini
+		/etc/php5/apache2/php.ini
 
-ADD files/test.php /var/www/htdocs/
+COPY files/test.php /var/www/html/
+COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80
 EXPOSE 443
