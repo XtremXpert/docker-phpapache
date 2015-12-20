@@ -41,8 +41,8 @@ COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 80
 EXPOSE 443
 
+ENTRYPOINT exec /bin/bash
 #CMD ["/usr/bin/supervisord"]
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
 #ENTRYPOINT ["/usr/sbin/httpd"]
 #CMD ["-DFOREGROUND"]
