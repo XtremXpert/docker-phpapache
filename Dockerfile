@@ -4,6 +4,8 @@ MAINTAINER Xtremxpert <xtremxpert@xtremxpert.com>
 
 ENV MAX_UPLOAD "50M"
 
+COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 RUN apt-get update && \
 	apt-get install -y \
 		apache2 \
@@ -40,8 +42,10 @@ ADD files/test.php /var/www/htdocs/
 EXPOSE 80
 EXPOSE 443
 
-ENTRYPOINT ["/usr/sbin/httpd"]
-CMD ["-DFOREGROUND"]
+CMD ["/usr/bin/supervisord"]
+
+#ENTRYPOINT ["/usr/sbin/httpd"]
+#CMD ["-DFOREGROUND"]
 
 #CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 #ENTRYPOINT [ "httpd -D FOREGROUND" ]
