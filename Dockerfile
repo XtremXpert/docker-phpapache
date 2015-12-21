@@ -1,4 +1,4 @@
-ROM debian:jessie
+FROM debian:jessie
 
 MAINTAINER Xtremxpert <xtremxpert@xtremxpert.com>
 
