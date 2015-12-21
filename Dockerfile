@@ -28,6 +28,7 @@ RUN apt-get update && \
 #               ncurse \
                 openssh-server \
                 php5 \
+                php5-mysqlnd \
                 rsync \
                 supervisor \
                 tar \
