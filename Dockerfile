@@ -26,7 +26,7 @@ RUN apt-get update && \
                 mc \
                 nano \
 #               ncurse \
-                openssh-server \
+#               openssh-server \
                 php5 \
                 php5-curl \
                 php5-gd \
