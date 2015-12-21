@@ -28,7 +28,12 @@ RUN apt-get update && \
 #               ncurse \
                 openssh-server \
                 php5 \
+                php5-curl \
+                php5-gd \
                 php5-mysqlnd \
+                php5-sqlite \
+                php5-tidy \
+                php5-xsl \
                 rsync \
                 supervisor \
                 tar \
