@@ -75,7 +75,6 @@ COPY files/test.php /var/www/html/
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80
-EXPOSE 22
 EXPOSE 443
 
 CMD ["/usr/bin/supervisord"]
